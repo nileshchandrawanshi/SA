@@ -1,0 +1,40 @@
+For our project we required 3 service account
+
+STG Service account (service principal): The service account for the server provides automated access to the Azure VM where our application is hosted. This account has the necessary permissions to deploy updates, manage configurations, and restart services on STG azure VM.
+
+PROD Service account (service principal): The service account for the server provides automated access to the Azure VM where our application is hosted. This account has the necessary permissions to deploy updates, manage configurations, and restart services on PROD azure VM.
+
+Bitbucket Service account : The service account for Bitbucket allows Azure DevOps pipelines to securely access our code repositories. It is used to pull the latest code during builds and deployments without exposing personal credentials.
+
+
+What is a Service Connection in Azure Devops
+A service connection in Azure DevOps is a configuration that stores the credentials and settings required to connect to external services like Azure, Bitbucket etc. It acts as a bridge between Azure DevOps and these services, allowing the pipelines to authenticate and perform actions on these resources.
+
+In Azure DevOps, when setting up a service connection to Azure resources, you usually create and use a service principal, which acts like a service account for your pipeline to authenticate and access Azure resources securely.
+
+For our project we need to create 3 service connection in azure devops -
+
+STG Service Connection: This service connection uses the STG service account (service principal) credentials to authenticate and interact with the STG Azure VM. It is configured in Azure DevOps to deploy our application code to the VM automatically.
+
+PROD Service Connection: This service connection uses the PROD service account (service principal) credentials to authenticate and interact with the PROD Azure VM. It is configured in Azure DevOps to deploy our application code to the VM automatically.
+
+Bitbucket Service Connection: This service connection uses the Bitbucket service account to allow Azure DevOps pipelines to fetch code from the Bitbucket repository. It ensures that the code is securely retrieved for build and deployment processes.
+
+How It All Works Together
+
+Service Account Creation:
+we need to creates service accounts with appropriate permissions for both the Azure VM and Bitbucket.
+
+Service Connection Configuration:
+In Azure DevOps, we create service connections for both the Azure VM and Bitbucket, using the service accounts (service principal) credentials. These connections are securely stored in Azure DevOps and are only accessible within the pipelines.
+
+Pipeline Integration:
+During the CI/CD process, the pipeline utilizes the service connections to perform actions like fetching code from Bitbucket, deploying it to the Azure VM, and managing the server environment.
+
+The term "service account" is generic and can be used in various contexts (like on-premises environments), whereas "service principal" is specific to Azure AD.
+
+
+
+
+
+
